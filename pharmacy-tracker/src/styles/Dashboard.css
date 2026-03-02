@@ -1,0 +1,371 @@
+/* ── Dashboard Layout ───────────────────────────────────────────────────── */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a2a3a;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dash-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a3c5e;
+}
+
+.dash-date {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+
+.branch-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.branch-btn {
+  padding: 7px 14px;
+  border: 1.5px solid #d0dce8;
+  background: white;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: #4a6278;
+  transition: all 0.2s;
+}
+
+.branch-btn:hover {
+  border-color: #2e6da4;
+  color: #2e6da4;
+}
+
+.branch-btn.active {
+  background: #2e6da4;
+  color: white;
+  border-color: #2e6da4;
+}
+
+/* ── Stat Cards ─────────────────────────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--accent);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  background: var(--bg);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+
+/* ── Main Grid ──────────────────────────────────────────────────────────── */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.card-header {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 12px;
+}
+
+.card-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a3c5e;
+}
+
+.card-sub {
+  font-size: 0.78rem;
+  color: #95a5a6;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+/* ── Table ──────────────────────────────────────────────────────────────── */
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.dash-table th {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #95a5a6;
+  background: #f8fafc;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.dash-table td {
+  padding: 10px 10px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #2c3e50;
+}
+
+.dash-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dash-table tr:hover td {
+  background: #f8fafc;
+}
+
+.mono {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #5d7a8a;
+}
+
+/* ── Badges ─────────────────────────────────────────────────────────────── */
+.badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge.red { background: #fdedec; color: #c0392b; }
+.badge.orange { background: #fef5e7; color: #d35400; }
+.badge.green { background: #eafaf1; color: #1e8449; }
+
+/* ── Low Stock ──────────────────────────────────────────────────────────── */
+.low-stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.low-stock-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.low-stock-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.low-stock-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.low-stock-branch {
+  font-size: 0.75rem;
+  color: #95a5a6;
+}
+
+.low-stock-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.low-stock-bar {
+  flex: 1;
+  height: 7px;
+  background: #f0f4f8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.low-stock-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e74c3c, #e67e22);
+  border-radius: 10px;
+  transition: width 0.4s;
+}
+
+.low-stock-count {
+  font-size: 0.78rem;
+  color: #7f8c8d;
+  white-space: nowrap;
+}
+
+/* ── Branch Overview ─────────────────────────────────────────────────────── */
+.branch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.branch-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.branch-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.branch-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.branch-total {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.branch-bar {
+  height: 8px;
+  background: #edf2f7;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.branch-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2e6da4, #63b3ed);
+  border-radius: 10px;
+  transition: width 0.4s;
+}
+
+/* ── Activity Feed ──────────────────────────────────────────────────────── */
+.activity-card {
+  width: 100%;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.activity-item:hover {
+  background: #f8fafc;
+}
+
+.activity-icon {
+  font-size: 1.2rem;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.activity-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-action {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.activity-drug {
+  font-size: 0.78rem;
+  color: #7f8c8d;
+}
+
+.activity-user {
+  font-size: 0.8rem;
+  color: #2e6da4;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: #bdc3c7;
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
