@@ -1,11 +1,14 @@
 /* ── Dashboard Layout ───────────────────────────────────────────────────── */
 .dashboard {
+   min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #1a3c5e 0%, #2e6da4 100%);
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
   font-family: 'Segoe UI', sans-serif;
-  color: #1a2a3a;
 }
+
 
 /* ── Header ─────────────────────────────────────────────────────────────── */
 .dash-header {
