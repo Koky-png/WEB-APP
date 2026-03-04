@@ -1,0 +1,364 @@
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.reports {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a2a3a;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.rep-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rep-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a3c5e;
+}
+
+.rep-sub {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+
+.month-select {
+  padding: 9px 14px;
+  border: 1.5px solid #d0dce8;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  outline: none;
+  background: white;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.month-select:focus {
+  border-color: #2e6da4;
+}
+
+/* ── Stat Cards ──────────────────────────────────────────────────────────── */
+.rep-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.rep-stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--accent);
+  transition: transform 0.2s;
+}
+
+.rep-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.rep-stat-icon {
+  font-size: 1.8rem;
+  background: var(--bg);
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.rep-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rep-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.rep-stat-drug {
+  font-size: 0.9rem;
+}
+
+.rep-stat-label {
+  font-size: 0.78rem;
+  color: #7f8c8d;
+  margin-top: 2px;
+}
+
+.rep-stat-month {
+  font-size: 0.72rem;
+  color: #bdc3c7;
+}
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.rep-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 0;
+}
+
+.rep-tab {
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #7f8c8d;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+
+.rep-tab:hover {
+  color: #2e6da4;
+}
+
+.rep-tab.active {
+  color: #2e6da4;
+  border-bottom-color: #2e6da4;
+}
+
+/* ── Tab Content ─────────────────────────────────────────────────────────── */
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+.rep-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.rep-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a3c5e;
+  margin-bottom: 20px;
+}
+
+/* ── Bar Chart ───────────────────────────────────────────────────────────── */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 180px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 4px;
+}
+
+.bar-value {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar-fill {
+  width: 100%;
+  background: #d0dce8;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.4s ease;
+  min-height: 4px;
+}
+
+.bar-fill.bar-active {
+  background: #2e6da4;
+}
+
+.bar-label {
+  font-size: 0.72rem;
+  color: #95a5a6;
+  white-space: nowrap;
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────── */
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.rep-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #95a5a6;
+  background: #f8fafc;
+  border-bottom: 1px solid #edf2f7;
+  white-space: nowrap;
+}
+
+.rep-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #2c3e50;
+}
+
+.rep-table tr:last-child td {
+  border-bottom: none;
+}
+
+.rep-table tr:hover td {
+  background: #f8fafc;
+}
+
+.row-selected td {
+  background: #e8f4fd !important;
+}
+
+.rep-drug {
+  font-weight: 600;
+  color: #1a3c5e;
+}
+
+/* ── Tags ────────────────────────────────────────────────────────────────── */
+.fast-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1e8449;
+  background: #eafaf1;
+  padding: 3px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.slow-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7f8c8d;
+  background: #f2f3f4;
+  padding: 3px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.category-tag {
+  padding: 3px 10px;
+  background: #e8f4fd;
+  color: #2e6da4;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ── Movement Bar ────────────────────────────────────────────────────────── */
+.movement-bar {
+  height: 8px;
+  background: #f0f4f8;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.movement-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s;
+}
+
+.movement-fill.fast { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+.movement-fill.slow { background: linear-gradient(90deg, #95a5a6, #bdc3c7); }
+
+/* ── Branch Performance ──────────────────────────────────────────────────── */
+.branch-perf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.branch-perf-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.branch-perf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.branch-perf-name {
+  font-weight: 700;
+  color: #1a3c5e;
+  font-size: 0.95rem;
+}
+
+.branch-perf-revenue {
+  font-weight: 600;
+  color: #27ae60;
+  font-size: 0.9rem;
+}
+
+.branch-perf-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #7f8c8d;
+}
+
+.branch-perf-bar {
+  height: 10px;
+  background: #edf2f7;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.branch-perf-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2e6da4, #63b3ed);
+  border-radius: 10px;
+  transition: width 0.4s;
+}
+
+/* ── Disposal Badges ─────────────────────────────────────────────────────── */
+.dis-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-red    { background: #fdedec; color: #c0392b; }
+.badge-orange { background: #fef5e7; color: #d35400; }

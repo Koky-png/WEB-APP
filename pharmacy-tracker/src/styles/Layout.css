@@ -8,73 +8,94 @@
 .layout {
   display: flex;
   height: 100vh;
-  background-color: #f4f6f9;
+  width: 100vw;
+  background-color: #f0f4f8;
 }
 
 .sidebar {
-  width: 240px;
-  background-color: #1a3c5e;
+  width: 250px;
+  background: linear-gradient(180deg, #0f2744 0%, #1a3c5e 100%);
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 0;
   flex-shrink: 0;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.15);
 }
 
 .sidebar-logo {
-  padding: 10px 20px 30px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.15);
 }
 
 .sidebar-logo h2 {
   font-size: 1.3rem;
+  font-weight: 700;
   color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.sidebar-logo p {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 12px;
   flex: 1;
+  gap: 2px;
+  padding: 0 10px;
 }
 
 .nav-link {
-  padding: 12px 20px;
-  color: rgba(255,255,255,0.75);
+  padding: 11px 14px;
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: background 0.2s;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-link:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.08);
   color: white;
 }
 
 .nav-link.active {
-  background-color: #2e6da4;
+  background: linear-gradient(90deg, #2e6da4, #3a85c0);
   color: white;
-  border-left: 4px solid #63b3ed;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(46,109,164,0.4);
 }
 
 .logout-btn {
-  margin: 20px;
-  padding: 10px;
-  background-color: rgba(255,255,255,0.1);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 6px;
+  margin: 16px;
+  padding: 11px;
+  background: rgba(231,76,60,0.15);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(231,76,60,0.3);
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  font-size: 0.88rem;
+  transition: all 0.2s;
 }
 
 .logout-btn:hover {
-  background-color: #c0392b;
+  background-color: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
 }
 
 .main-content {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
+  min-width: 0;
 }
