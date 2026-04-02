@@ -18,6 +18,7 @@ export default function Register() {
   const navigate = useNavigate()
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false) // Added loading state
   const [success, setSuccess] = useState(false)
 
   function handleChange(e) {
@@ -41,13 +42,48 @@ export default function Register() {
     return e
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const errs = validate()
-    if (Object.keys(errs).length > 0) { setErrors(errs); return }
-    // TODO: replace with real API call
-    setSuccess(true)
-    setTimeout(() => navigate('/login'), 2000)
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
+      return
+    }
+
+    setLoading(true)
+    try {
+      // 1. Create the user in Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(
+        auth, 
+        form.email, 
+        form.password
+      )
+      const user = userCredential.user
+
+      // 2. Store additional info in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        fullName: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        role: form.role,
+        branch: form.branch,
+        createdAt: new Date().toISOString()
+      })
+
+      setSuccess(true)
+      setTimeout(() => navigate('/login'), 2000)
+    } catch (err) {
+      // Handle Firebase specific errors (e.g., email already exists)
+      if (err.code === 'auth/email-already-in-use') {
+        setErrors({ email: 'This email is already registered.' })
+      } else {
+        setErrors({ server: 'Failed to create account. Please try again.' })
+      }
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -62,9 +98,10 @@ export default function Register() {
             ✅ Account created! Redirecting to login...
           </div>
         )}
+        
+        {errors.server && <div className="register-error">{errors.server}</div>}
 
         <form onSubmit={handleSubmit} className="register-form">
-          {/* Full Name */}
           <div className="form-group">
             <label>Full Name</label>
             <input
@@ -72,11 +109,11 @@ export default function Register() {
               value={form.fullName}
               onChange={handleChange}
               placeholder="e.g. Kelly Wambugu"
+              disabled={loading}
             />
             {errors.fullName && <span className="form-error">{errors.fullName}</span>}
           </div>
 
-          {/* Email */}
           <div className="form-group">
             <label>Email Address</label>
             <input
@@ -85,11 +122,11 @@ export default function Register() {
               value={form.email}
               onChange={handleChange}
               placeholder="you@pharmacy.com"
+              disabled={loading}
             />
             {errors.email && <span className="form-error">{errors.email}</span>}
           </div>
 
-          {/* Phone */}
           <div className="form-group">
             <label>Phone Number</label>
             <input
@@ -97,11 +134,11 @@ export default function Register() {
               value={form.phone}
               onChange={handleChange}
               placeholder="e.g. +254 712 345 678"
+              disabled={loading}
             />
             {errors.phone && <span className="form-error">{errors.phone}</span>}
           </div>
 
-          {/* Password Row */}
           <div className="form-row">
             <div className="form-group">
               <label>Password</label>
@@ -111,6 +148,7 @@ export default function Register() {
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
+                disabled={loading}
               />
               {errors.password && <span className="form-error">{errors.password}</span>}
             </div>
@@ -122,16 +160,16 @@ export default function Register() {
                 value={form.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
+                disabled={loading}
               />
               {errors.confirmPassword && <span className="form-error">{errors.confirmPassword}</span>}
             </div>
           </div>
 
-          {/* Role & Branch Row */}
           <div className="form-row">
             <div className="form-group">
               <label>Role</label>
-              <select name="role" value={form.role} onChange={handleChange}>
+              <select name="role" value={form.role} onChange={handleChange} disabled={loading}>
                 <option value="">-- Select Role --</option>
                 <option value="pharmacist">Pharmacist</option>
                 <option value="manager">Pharmaceutical Manager</option>
@@ -140,7 +178,7 @@ export default function Register() {
             </div>
             <div className="form-group">
               <label>Branch</label>
-              <select name="branch" value={form.branch} onChange={handleChange}>
+              <select name="branch" value={form.branch} onChange={handleChange} disabled={loading}>
                 <option value="">-- Select Branch --</option>
                 {BRANCHES.map(b => <option key={b} value={b}>{b}</option>)}
               </select>
@@ -148,7 +186,9 @@ export default function Register() {
             </div>
           </div>
 
-          <button type="submit" className="register-btn">Create Account</button>
+          <button type="submit" className="register-btn" disabled={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </button>
         </form>
 
         <p className="register-footer">
