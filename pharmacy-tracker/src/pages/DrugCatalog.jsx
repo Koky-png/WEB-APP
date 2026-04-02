@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/DrugCatalog.css";
 
 const INITIAL_DRUGS = [
@@ -17,13 +17,29 @@ const CATEGORIES = ["All", "Antibiotic", "Painkiller", "Diabetes", "Cardiovascul
 const EMPTY_FORM = { name: "", category: "", reorder_level: "", unit_price: "", storage_condition: "" };
 
 export default function DrugCatalog() {
-  const [drugs, setDrugs] = useState(INITIAL_DRUGS);
+  const [drugs, setDrugs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+
+  useEffect(() => {
+    // fetch drugs from db
+    fetch('http://localhost/get_drugs.php')
+      .then(response => response.json())
+      .then(data => {
+        setDrugs(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+        setDrugs(INITIAL_DRUGS);
+        setLoading(false);
+      });
+  }, []);
 
   // ── Filtering ─────────────────────────────────────────────────────────────
   const filtered = drugs.filter(d => {
@@ -79,6 +95,17 @@ export default function DrugCatalog() {
       "Room Temperature": "badge-grey",
     };
     return map[condition] || "badge-grey";
+  }
+
+  if (loading) {
+    return (
+      <div className="drugcatalog">
+        <div className="dc-header">
+          <h1 className="dc-title">Loading drugs from database...</h1>
+          <p className="dc-sub">Please wait</p>
+        </div>
+      </div>
+    );
   }
 
   return (
