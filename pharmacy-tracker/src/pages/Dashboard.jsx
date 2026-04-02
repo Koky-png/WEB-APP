@@ -5,7 +5,7 @@ import {
   FiActivity, 
   FiArrowUpRight, 
   FiPlus 
-} from "react-icons/fi"; // Optional: npm install react-icons
+} from "react-icons/fi"; 
 import "../styles/Dashboard.css";
 
 export default function Dashboard() {
